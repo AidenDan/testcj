@@ -1,9 +1,7 @@
 package com.aiden.cj.config;
 
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
@@ -16,6 +14,5 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @MapperScan(value = {"com.aiden.cj.mapper"})
 @Configuration
-@PropertySource(value = {"classpath:db.properties", "classpath:vx.properties"})
 public class Config {
 }

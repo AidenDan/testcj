@@ -3,10 +3,13 @@ package com.aiden.cj.controller;
 import com.aiden.cj.constant.CommonResult;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.HashMap;
 
 /**
  * @author Aiden
@@ -19,10 +22,9 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class LoginSmallProgramController {
     private final RestTemplate restTemplate;
-    @Value("${appId}")
-    private String appId;
-    @Value("${appSecret}")
-    private String appSecret;
+
+    @Value("${jscode2session}")
+    private String jscode2session;
 
     @Autowired
     public LoginSmallProgramController(RestTemplate restTemplate) {
@@ -37,8 +39,9 @@ public class LoginSmallProgramController {
      */
     @PostMapping("/loginSP/{jsCode}")
     public CommonResult loginSP(@PathVariable("jsCode") String jsCode) {
-        String url = "https://api.weixin.qq.com/sns/jscode2session?appid=" + appId + "&secret=" + appSecret + "&js_code=" + jsCode + "&grant_type=authorization_code";
-        String jsonString = restTemplate.getForObject(url, String.class);
+        HashMap<String, String> params = Maps.newHashMap();
+        params.put("jsCode",jsCode);
+        String jsonString = restTemplate.getForObject(jscode2session, String.class,params);
         JSONObject jsonObject = JSON.parseObject(jsonString);
         String openid = (String) jsonObject.get("openid");
         return CommonResult.success().data("openid", openid);
