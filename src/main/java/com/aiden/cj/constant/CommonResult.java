@@ -16,7 +16,7 @@ public class CommonResult {
     private Boolean status;
     private Integer code;
     private String message;
-    private Map<String, Object> data = new HashMap<String, Object>();
+    private Map<String, Object> data = new HashMap<>();
 
     private CommonResult() {
     }

@@ -1,3 +1,5 @@
+server:
+  port: 8000
 spring:
   #计划任务配置
   quartz:
@@ -44,7 +46,7 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
     cachePrepStmts: true
     druid:
-      url: jdbc:mysql://localhost:3306/testcj?serverTimezone=GMT%2B8&useServerPrepStmts=true&cachePrepStmts=true&allowMultiQueries=true
+      url: jdbc:mysql://localhost:3306/testcj?serverTimezone=GMT%2B8&useServerPrepStmts=true&cachePrepStmts=true&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
       username: root
       password: rzkakfljGfn1yr1wHa4rLxkPtZpbwb7qy8dT9WIpP3s2Q30Q7dX+NcBww5IzLuni97wN6zsqf9uT90wZZh+Dlg==
       publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALeMrWv2XXmX740JbDvwHqsVufX8qD+C4zfsk14kxRLVR29GI4q/7fAdMzIiwEeNUxvzv3uP5rJ9ynmhRHGsJacCAwEAAQ==
@@ -86,4 +88,4 @@ logging:
 appId: wx2b24f62d6d796791
 appSecret: be885088762e668a1b7b49b64c685a8c
 
-jscode2session: https://api.weixin.qq.com/sns/jscode2session?appid= ${appId}&secret=${appSecret}&js_code={jsCode}&grant_type=authorization_code
+jscode2session: https://api.weixin.qq.com/sns/jscode2session?appid=${appId}&secret=${appSecret}&js_code={jsCode}&grant_type=authorization_code

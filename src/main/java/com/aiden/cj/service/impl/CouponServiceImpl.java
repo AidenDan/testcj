@@ -1,16 +1,17 @@
 package com.aiden.cj.service.impl;
 
+import com.aiden.cj.constant.CommonResult;
 import com.aiden.cj.constant.CouponStatus;
 import com.aiden.cj.mapper.CouponMapper;
 import com.aiden.cj.model.Coupon;
 import com.aiden.cj.service.CouponService;
-import com.aiden.cj.util.UUIDGenerator;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 import java.util.List;
 
 /**
@@ -42,7 +43,7 @@ public class CouponServiceImpl extends ServiceImpl<CouponMapper, Coupon> impleme
      */
     @Override
     public void updateCouponStatus(Coupon coupon) {
-        this.updateById(coupon);
+        updateById(coupon);
     }
 
     /**
@@ -52,12 +53,24 @@ public class CouponServiceImpl extends ServiceImpl<CouponMapper, Coupon> impleme
      */
     @Override
     public void addCoupon(Coupon coupon) {
-        coupon.setId(UUIDGenerator.getUUID());
-        // 设置优惠卷起始有效时间
-        coupon.setBeginTime(LocalDateTime.now());
-        // 设置优惠卷最后有效时间
-        coupon.setEndTime(LocalDate.now().plusDays(3));
-        this.save(coupon);
+        save(coupon);
+    }
+
+    @Override
+    public CommonResult getCouponInfo(String id) {
+        LambdaQueryWrapper<Coupon> query = Wrappers.lambdaQuery();
+        query.eq(Coupon::getId, id);
+        query.eq(Coupon::getCouponStatus,CouponStatus.UNUSED.getValue());
+        Coupon coupon = getOne(query);
+        return CommonResult.success().data("coupon",coupon);
+    }
+
+    @Override
+    public CommonResult getMyCoupons(String openid, String status) {
+        LambdaQueryWrapper<Coupon> query = Wrappers.lambdaQuery();
+        query.eq(Coupon::getUserId, openid);
+        query.eq(StringUtils.isNotBlank(status), Coupon::getCouponStatus, status);
+        return CommonResult.success().data("list",list(query));
     }
 }
 

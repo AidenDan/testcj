@@ -46,15 +46,4 @@ class ApplicationTests {
         System.err.println(result);
     }
 
-    @Test
-    public void testAddCoupon() {
-        Coupon c = Coupon.builder()
-                .quota(10)
-                .couponStatus(CouponStatus.UNUSED.getValue())
-                .description("10元优惠卷")
-                .userId("123456789")
-                .id("131313ggg")
-                .build();
-        couponService.addCoupon(c);
-    }
 }

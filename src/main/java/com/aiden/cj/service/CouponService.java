@@ -1,5 +1,6 @@
 package com.aiden.cj.service;
 
+import com.aiden.cj.constant.CommonResult;
 import com.aiden.cj.constant.CouponStatus;
 import com.aiden.cj.model.Coupon;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -34,4 +35,17 @@ public interface CouponService extends IService<Coupon> {
      * @param coupon 优惠卷
      */
     void addCoupon(Coupon coupon);
+
+    /**
+     * 获取优惠券信息
+     * @return
+     */
+    CommonResult getCouponInfo(String id);
+
+    /**
+     * 获取我的优惠券
+     * @param openid
+     * @return
+     */
+    CommonResult getMyCoupons(String openid, String status);
 }

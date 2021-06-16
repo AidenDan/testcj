@@ -26,13 +26,15 @@ public class Coupon {
     // 优惠卷描述
     private String description;
     // 优惠卷开始有效期
-    private LocalDateTime beginTime;
+    private String beginTime;
     // 优惠卷最后有效期
-    private LocalDate endTime;
+    private String endTime;
     // 优惠卷的核销时间
-    private LocalDateTime checkTime;
+    private String checkTime;
     // 优惠卷状态
     private String couponStatus;
     // 用户id 这个优惠卷属于哪一个用户
     private String userId;
+    // index
+    private Integer num;
 }

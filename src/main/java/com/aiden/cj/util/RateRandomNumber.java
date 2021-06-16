@@ -58,7 +58,7 @@ public class RateRandomNumber {
         }
         int rangeCount = separates.size() + 1; //例如：7个插值，可以将一个数值范围分割成8段
         //构造分割的n段范围
-        List<Range> ranges = new ArrayList<Range>();
+        List<Range> ranges = new ArrayList<>();
         double scopeMax = 0D;
         for (int i = 0; i < rangeCount; i++) {
             Range range = new Range();
@@ -124,11 +124,11 @@ public class RateRandomNumber {
 
     /**
      * 按概率返回一个随机数子
-     *
+     *  中奖顺序稍微有点改变
      * @return 随机数字
      */
     public static int getRateNumber() {
-        List<Double> separates = new ArrayList<Double>();
+        List<Double> separates = new ArrayList<>();
         separates.add(1D);
         separates.add(2D);
         separates.add(3D);
@@ -138,13 +138,13 @@ public class RateRandomNumber {
         separates.add(7D);
         List<Double> percents = new ArrayList<>();
         percents.add(41D);
+        percents.add(1D);
+        percents.add(5D);
+        percents.add(5D);
         percents.add(41.9D);
-        percents.add(1D);
-        percents.add(1D);
-        percents.add(5D);
-        percents.add(5D);
         percents.add(5D);
         percents.add(0.1D);
+        percents.add(1D);
         double number = produceRateRandomNumber(0, 8, separates, percents);
         int ceil = (int) Math.ceil(number);
         if (ceil == 0) {

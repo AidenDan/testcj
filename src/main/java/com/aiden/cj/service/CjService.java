@@ -1,6 +1,8 @@
 package com.aiden.cj.service;
 
 import com.aiden.cj.constant.CommonResult;
+import com.aiden.cj.model.Coupon;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * @author Aiden
@@ -9,7 +11,7 @@ import com.aiden.cj.constant.CommonResult;
  * @date 2021-5-22 11:50:25
  */
 
-public interface CjService {
+public interface CjService  {
     /**
      * 抽奖
      *
@@ -17,4 +19,13 @@ public interface CjService {
      * @return 结果
      */
     public CommonResult getCjNumber(String openid);
+
+    /**
+     * 核销优惠券
+     * @param id
+     * @return
+     */
+    CommonResult verifyLottery(String id, String openid);
+
+
 }

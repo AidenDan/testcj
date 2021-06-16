@@ -1,7 +1,7 @@
 package com.aiden.cj.exception;
 
 public class BaseException extends RuntimeException {
-    private int status = 200;
+    private int status = 500;
 
     public int getStatus() {
         return status;
