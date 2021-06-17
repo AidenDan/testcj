@@ -46,10 +46,10 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
     cachePrepStmts: true
     druid:
-      url: jdbc:mysql://localhost:3306/testcj?serverTimezone=GMT%2B8&useServerPrepStmts=true&cachePrepStmts=true&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+      url: jdbc:mysql://localhost:3306/cj?serverTimezone=GMT%2B8&useServerPrepStmts=true&cachePrepStmts=true&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
       username: root
-      password: rzkakfljGfn1yr1wHa4rLxkPtZpbwb7qy8dT9WIpP3s2Q30Q7dX+NcBww5IzLuni97wN6zsqf9uT90wZZh+Dlg==
-      publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALeMrWv2XXmX740JbDvwHqsVufX8qD+C4zfsk14kxRLVR29GI4q/7fAdMzIiwEeNUxvzv3uP5rJ9ynmhRHGsJacCAwEAAQ==
+      password: oknLSIr5oXQSEIV3FVF8398QjuuLkJYhZLUACAe+M/xa+xwYf2ANhrkdW8oRTzdBmVa4RCZFOzLFyELQBBuG5A==
+      publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAL2nIv3Of0RS2wfOlka31bx6udNRP9f+GpJvPge9mr/dCH8NzAILFl/f1qTqWxhK961vNjFrUVcYm2LYHhwgiv8CAwEAAQ==
       connection-properties: config.decrypt=true;config.decrypt.key=${spring.datasource.druid.publicKey}
       filter:
         config:

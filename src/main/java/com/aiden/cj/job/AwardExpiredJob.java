@@ -6,6 +6,8 @@ import com.aiden.cj.model.Coupon;
 import com.aiden.cj.service.CouponService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import lombok.extern.log4j.Log4j2;
+import org.joda.time.DateTime;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,6 +19,7 @@ import java.util.List;
 @PersistJobDataAfterExecution
 // 等待上一次任务执行完成，才会继续执行新的任务
 @DisallowConcurrentExecution
+@Log4j2
 public class AwardExpiredJob  implements Job {
 
 
@@ -38,9 +41,10 @@ public class AwardExpiredJob  implements Job {
      */
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+        log.info("执行定时任务");
         LambdaQueryWrapper<Coupon> wrapper = Wrappers.lambdaQuery();
         wrapper.eq(Coupon::getCouponStatus, CouponStatus.UNUSED.getValue());
-        wrapper.le(Coupon::getEndTime, LocalDateTime.now());
+        wrapper.le(Coupon::getEndTime, DateTime.now().toString("yyyy-MM-dd"));
         List<Coupon> coupons = couponMapper.selectList(wrapper);
         if (coupons != null && !coupons.isEmpty()) {
             coupons.forEach(coupon -> {
@@ -48,5 +52,6 @@ public class AwardExpiredJob  implements Job {
                 CouponService.updateCouponStatus(coupon);
             });
         }
+        log.info("定时任务结束");
     }
 }

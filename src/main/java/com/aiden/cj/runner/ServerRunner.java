@@ -15,7 +15,7 @@ public class ServerRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         // 定时任务添加
-        schedule.addJobAndStart(AwardExpiredJob.class, "0 0 0 * * ?",AwardExpiredJob.class.getName());
+        schedule.addJobAndStart(AwardExpiredJob.class, "0 0 1 * * ?",AwardExpiredJob.class.getName());
 
     }
 }
